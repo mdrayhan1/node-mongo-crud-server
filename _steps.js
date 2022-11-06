@@ -122,8 +122,25 @@ app.get('/users', async (req, res) => {
 then client side a kaj
 
 
+module: 65-6
+user delete korar jonno backend a api create
+20, app.delete('/users/:id', async (req, res) => {
+21, const id = req.params.id;
+22, console.log('trying to delete', id);
+23, no client side a
 
-
+29,[optional] mogodb-delrtr operation-delete a document-
+30, const query = { _id: ObjectId(id) }
+31, const result = await userCollection.deleteOne(query);
+32, console.log(result);
+33, res.send(result);
+}
+34, nodemon a eta asbe
+{acknowledged: true, deletedCount: 1}
+35,
+35,localhost300 a jekhane home componenet er maddome data database theke direct ene dekhano hocce sekhane gia xx a clik kore dekha delete hobe o console a acknow-true o deletedCo0unt
+36,ekhon caile console er deleted count dia user k 1 ta confirmation o user k dite pari
+37, no clint side a go
 
 
 
