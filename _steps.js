@@ -142,13 +142,63 @@ user delete korar jonno backend a api create
 36,ekhon caile console er deleted count dia user k 1 ta confirmation o user k dite pari
 37, no clint side a go
 
+65-7
+4. app.get('/users/:id', async (req, res) => {
+5.           const id = req.params.id;
+6.            const query = { _id: ObjectId(id) };
+7.            const user = await userCollection.findOne(query);
+8.            res.send(user);
+        })
+
+9. server url check particular single id dia asbe data object akare
+localhost5000/user/635328
+10. no client side a
 
 
+65-8 start
+ 1.go mongodb-update and replace operations
+ 2.Update a Document
+ 3.gsearch-MDNput method=>put-http-MDN web docs
+ 4.ctrl f patch
+ 5.server side a put nea
+ 5.app.put('/users/:id', async (req, res) => {
+ 6.           const id = req.params.id;
+ 7.           const filter = { _id: ObjectId(id) };
+ 13.           const user = req.body;
+ 14.           console.log(user ) kore dekha name email clint side a update kore update user a click korle sathe sathe nodemon a object er modde update gulo asbe
+ 15.           const option = {upsert: true};
+ 16.           const updatedUser = {
+                $set: {
+                    name: user.name,
+                    address: user.address,
+                    email: user.email
+                }
+            }
+ 17.           const result = await userCollection.updateOne(filter, updatedUser, option);
+ 18.          res.send(result); console.log(user ) kore dekha name email clint side a update kore update user a click korle sathe sathe console a {acknoeledged: true, modifiedCount:1, upsurtedId:null, upsurtedCount:0, matchedCount: 1} asbe + home page ui te jekhane name email gulo show kore sekhane add hobe
+ 
+        })
 
-
-
-
-
+8.client side a fetch korte hobe update component a gia handleupdateuser nmae er click handler function er vitore
+const handleUpdateUser = event =>{
+        event.preventDefault();
+        // console.log(user);
+8.        fetch(`http://localhost:5000/users/${storedUser._id}`, {
+10.            method: 'PUT',
+11.            headers: {
+                'content-type': 'application/json'
+            },
+12.            body: JSON.stringify(user)
+        })
+9.        .then(res => res.json())
+9.        .then(data => {
+19.            if (data.modifiedCount > 0){
+                alert('user updated')
+                console.log(data);
+            }
+            
+        })
+    }
 
 
 
